@@ -25,22 +25,22 @@ gulp.task('default', ['watch']);
 gulp.task('watch', ['live', 'watch-sass', 'watch-jade']);
 
 gulp.task('watch-jade', function(){
-  gulp.watch(srcPath.home, ['cnv-jade']);
+  gulp.watch(srcPath.jade, ['cnv-jade']);
 });
 
 gulp.task('cnv-jade', function(){
-  gulp.src(srcPath)
+  gulp.src(srcPath.jade)
     .pipe(plumber())
     .pipe(jade())
     .pipe(gulp.dest('src/'));
 });
 
 gulp.task('watch-sass', function(){
-  gulp.watch(srcPath.home, ['cnv-sass']);
+  gulp.watch(srcPath.sass, ['cnv-sass']);
 });
 
 gulp.task('cnv-sass', function(){
-  gulp.src(srcPath)
+  gulp.src(srcPath.sass)
     .pipe(plumber())
     .pipe(sass())
     .pipe(gulp.dest('src/'));
@@ -55,6 +55,20 @@ gulp.task('live', ['connect'], function() {
 gulp.task('connect', function() {
   connect.server({
     root: srcPath.home,
+    port: 8080,
+    livereload: true
+  });
+});
+
+gulp.task('live-build', ['connect-build'], function() {
+  gulp.watch(buildPath.all).on('change', function(file) {
+    gulp.src(file.path).pipe(connect.reload());
+  });
+});
+
+gulp.task('connect-build', function() {
+  connect.server({
+    root: buildPath.home,
     port: 8080,
     livereload: true
   });
