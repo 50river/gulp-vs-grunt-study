@@ -32,7 +32,7 @@ gulp.task('cnv-jade', function(){
   gulp.src(srcPath.jade)
     .pipe(plumber())
     .pipe(jade())
-    .pipe(gulp.dest('src/'));
+    .pipe(gulp.dest(buildPath.home));
 });
 
 gulp.task('watch-sass', function(){
@@ -43,7 +43,7 @@ gulp.task('cnv-sass', function(){
   gulp.src(srcPath.sass)
     .pipe(plumber())
     .pipe(sass())
-    .pipe(gulp.dest('src/'));
+    .pipe(gulp.dest(buildPath.home));
 });
 
 gulp.task('live', ['connect'], function() {
