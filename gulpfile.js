@@ -48,14 +48,14 @@ gulp.task('cnv-sass', function(){
 });
 
 gulp.task('live', ['connect'], function() {
-  gulp.watch(srcPath.all).on('change', function(file) {
+  gulp.watch(buildPath.all).on('change', function(file) {
     gulp.src(file.path).pipe(connect.reload());
   });
 });
 
 gulp.task('connect', function() {
   connect.server({
-    root: srcPath.home,
+    root: buildPath.home,
     port: 8080,
     livereload: true
   });
