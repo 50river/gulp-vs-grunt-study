@@ -13,7 +13,7 @@ var srcPath = {
   'all': 'src/**',
   'home': 'src/',
   'jade': 'src/*.jade',
-  'sass': 'src/*.sass'
+  'sass': 'src/*.scss'
 };
 
 var buildPath = {
@@ -22,6 +22,7 @@ var buildPath = {
 };
 
 gulp.task('default', ['watch']);
+gulp.task('build', ['cnv-sass', 'cnv-jade'])
 gulp.task('watch', ['live', 'watch-sass', 'watch-jade']);
 
 gulp.task('watch-jade', function(){
