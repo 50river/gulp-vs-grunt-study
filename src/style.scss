@@ -1,0 +1,47 @@
+//! Sample mixin
+//  http://www.atmarkit.co.jp/ait/articles/1308/21/news008.html
+//  http://www.atmarkit.co.jp/ait/articles/1212/06/news004_2.html
+//  http://testcording.com/?p=254
+
+/*
+ * color set
+ */
+$default-col : #888;
+$info-col : #2c3e50;
+/* background */
+$bg-color : #efefef;
+
+/*
+ * mixin
+ */
+@mixin box_shadow($value...) {
+    -webkit-box-shadow: $value;
+       -moz-box-shadow: $value;
+        -ms-box-shadow: $value;
+            box-shadow: $value;
+}
+@mixin ts-fff($op : .7){
+  text-shadow: -1px 1px rgba(0, 0, 0, $op);
+}
+
+/*
+ * Style
+ */
+body {
+  font-family: 'Lucida Grande', 'Hiragino Kaku Gothic ProN', 'ヒラギノ角ゴ ProN W3', Meiryo, メイリオ, sans-serif;
+  margin: 20px 0 0 20px;
+  background-color: $bg-color;
+}
+#container {
+  @include box_shadow(0px 0px 10px #88aa88, 2px 6px 10px #88aa88);
+  background: #ecf0f1; 
+  
+  h1 {
+    @include ts-fff(.2);
+    color : $info-col;
+  }
+  p {
+    @include ts-fff(.1);
+    color: $default-col;
+  }
+}
